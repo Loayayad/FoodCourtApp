@@ -6,5 +6,10 @@ class ChefService{
    Stream<QuerySnapshot> snapshots = chefs.snapshots();
    return snapshots;
  }
+ 
+  Stream<QuerySnapshot> getChefByID(cID){
+    Stream<QuerySnapshot> chefsI = Firestore.instance.collection('chefs').where('id', isEqualTo: cID).snapshots();
+    return chefsI;
+  }
 
 }
