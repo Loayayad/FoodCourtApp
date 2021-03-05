@@ -7,6 +7,10 @@ class Registration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Register'),
+        centerTitle: true,
+      ),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(32),
@@ -21,7 +25,7 @@ class Registration extends StatelessWidget {
                 child: Text(
                   "Registration",
                   style: TextStyle(
-                      color: Colors.lightBlue,
+                      color: Colors.deepOrange,
                       fontSize: 36,
                       fontWeight: FontWeight.w500),
                 ),
@@ -36,7 +40,7 @@ class Registration extends StatelessWidget {
                     borderRadius: BorderRadius.all(
                       Radius.circular(8),
                     ),
-                    borderSide: BorderSide(color: Colors.black),
+                    borderSide: BorderSide(color: Colors.orange),
                   ),
                 ),
                 controller: _authService.emailController,
@@ -51,7 +55,7 @@ class Registration extends StatelessWidget {
                     borderRadius: BorderRadius.all(
                       Radius.circular(8),
                     ),
-                    borderSide: BorderSide(color: Colors.black),
+                    borderSide: BorderSide(color: Colors.orange),
                   ),
                 ),
                 controller: _authService.passwordController,
@@ -66,7 +70,7 @@ class Registration extends StatelessWidget {
                     borderRadius: BorderRadius.all(
                       Radius.circular(8),
                     ),
-                    borderSide: BorderSide(color: Colors.black),
+                    borderSide: BorderSide(color: Colors.orange),
                   ),
                 ),
                 controller: _authService.nameController,
@@ -94,7 +98,7 @@ class Registration extends StatelessWidget {
                   onPressed: () async {
                     await _authService.registerButton(context);
                   },
-                  color: Colors.blue,
+                  color: Colors.deepOrange,
                 ),
               )
             ],
