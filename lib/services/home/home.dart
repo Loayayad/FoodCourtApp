@@ -23,6 +23,16 @@ class _FoodCourtHomePageState extends State<FoodCourtHomePage> {
               );
             },
           ),
+          RaisedButton(
+            child: Text("Menu"),
+            onPressed: () {
+              setState(
+                () {
+                  Navigator.pushNamed(context, 'menu');
+                },
+              );
+            },
+          ),
         ],
       ),
     );
