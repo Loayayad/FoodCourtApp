@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:FoodCourtApp/screens/chef/chefDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../models/chef/chef.dart';
@@ -73,10 +73,19 @@ class _ChefState extends State<ShowChef> {
                           padding: const EdgeInsets.all(8.0),
                           child: Text(chefsList[index].name, style: TextStyle(color: Colors.deepOrange ,fontWeight: FontWeight.bold,fontSize: 18.0,)),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text('Know them more', ),
-                        ),
+                        TextButton(
+                             onPressed: () {
+                           Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => chefDetails(
+                              name: chefsList[index].name
+                            ,description: chefsList[index].description
+                            ,imageLink: chefsList[index].image,
+                            )
+                            )
+                            );
+                            },
+                               child: Text("Know them more" , style: TextStyle(color: Colors.black )),
+                             )
                         
                       ],
                     ),        
