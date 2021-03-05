@@ -1,5 +1,6 @@
 import 'package:FoodCourtApp/screens/auth/signup.dart';
 import 'package:FoodCourtApp/screens/menu/menus.dart';
+import 'package:FoodCourtApp/screens/home/home.dart';
 import 'package:FoodCourtApp/services/home/home.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,8 @@ class MyApp extends StatelessWidget {
       routes: {
         'register': (context) => Registration(),
         'menu': (context) => Menu(),
+        'home': (context) => Home(),
+
       },
     );
   }
