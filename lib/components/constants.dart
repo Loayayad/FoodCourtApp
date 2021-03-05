@@ -6,4 +6,4 @@ const kLabelTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
-const kHomeBoxColor = Color(0xFF070048);
+const kHomeBoxColor = Colors.deepOrange;

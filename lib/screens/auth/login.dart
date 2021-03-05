@@ -6,6 +6,10 @@ class Login extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Login'),
+        centerTitle: true,
+      ),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(32),
@@ -20,7 +24,7 @@ class Login extends StatelessWidget {
                 child: Text(
                   "Login",
                   style: TextStyle(
-                      color: Colors.lightBlue,
+                      color: Colors.deepOrange,
                       fontSize: 36,
                       fontWeight: FontWeight.w500),
                 ),
@@ -35,7 +39,7 @@ class Login extends StatelessWidget {
                     borderRadius: BorderRadius.all(
                       Radius.circular(8),
                     ),
-                    borderSide: BorderSide(color: Colors.black),
+                    borderSide: BorderSide(color: Colors.orange),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -54,7 +58,13 @@ class Login extends StatelessWidget {
                   labelText: "Password",
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8)),
-                    borderSide: BorderSide(color: Colors.black),
+                    borderSide: BorderSide(color: Colors.orange),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                    borderSide: BorderSide(color: Colors.orange),
                   ),
                 ),
                 controller: _authService.passwordController,
@@ -71,7 +81,7 @@ class Login extends StatelessWidget {
                   onPressed: () async {
                     await _authService.loginButton(context);
                   },
-                  color: Colors.blue,
+                  color: Colors.deepOrange,
                 ),
               )
             ],

@@ -1,3 +1,4 @@
+import 'package:FoodCourtApp/screens/auth/login.dart';
 import 'package:FoodCourtApp/services/home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +48,7 @@ class AuthService {
 
     if (result) {
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => FoodCourtHomePage()));
+          .push(MaterialPageRoute(builder: (context) => Login()));
     } else {
       print("Error");
     }
