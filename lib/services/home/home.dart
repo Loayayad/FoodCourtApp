@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class FoodCourtHomePage extends StatefulWidget {
+  final name;
+  FoodCourtHomePage({this.name});
   @override
   _FoodCourtHomePageState createState() => _FoodCourtHomePageState();
 }

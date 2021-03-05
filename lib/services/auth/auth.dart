@@ -77,9 +77,9 @@ class AuthService {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => FoodCourtHomePage(
-              //name: user.displayName,
-              //imageUrl: user.photoUrl,
-              ),
+            name: user.displayName,
+            //imageUrl: user.photoUrl,
+          ),
         ),
       );
     } else {
