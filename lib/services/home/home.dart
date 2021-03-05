@@ -50,6 +50,16 @@ class _FoodCourtHomePageState extends State<FoodCourtHomePage> {
                 );
               },
             ),
+             RaisedButton(
+              child: Text("Show Chefs"),
+              onPressed: () {
+                setState(
+                  () {
+                    Navigator.pushNamed(context, 'chef');
+                  },
+                );
+              },
+            ),
           ],
         ),
       ),

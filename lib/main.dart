@@ -1,5 +1,6 @@
 import 'package:FoodCourtApp/screens/auth/login.dart';
 import 'package:FoodCourtApp/screens/auth/signup.dart';
+import 'package:FoodCourtApp/screens/chef/chefs.dart';
 import 'package:FoodCourtApp/screens/menu/menus.dart';
 import 'package:FoodCourtApp/services/home/home.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         'register': (context) => Registration(),
         'login': (context) => Login(),
         'menu': (context) => Menu(),
+        'chef':(context) => ShowChef(),
       },
     );
   }

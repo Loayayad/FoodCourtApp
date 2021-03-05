@@ -4,5 +4,5 @@ class Chef {
   String image;
   String description;
 
-  Chef(this.id,this.name,this.image,this.description);
+  Chef(this.id ,this.name ,this.image ,this.description);
 }
