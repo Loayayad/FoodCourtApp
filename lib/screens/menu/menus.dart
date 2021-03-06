@@ -9,12 +9,15 @@ import '../../models/meal/meal.dart';
 
 
 class Menu extends StatefulWidget {
+  int id;
+  
+  Menu({this.id});
   @override
   _MenuState createState() => _MenuState();
 }
 
 class _MenuState extends State<Menu> with TickerProviderStateMixin{
-  TabController _tabController;
+  
   StreamSubscription<QuerySnapshot> meals;
   List<Meal> mealsList;
   MenuService menuServ = new MenuService();
@@ -22,10 +25,10 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin{
   @override
   void initState(){
     super.initState();
-    _tabController = TabController(length:6, vsync: this);
+    
     mealsList = new List();
     meals?.cancel();
-    meals = menuServ.getMealByCategoryID(1).listen((QuerySnapshot snapshot) {
+    meals = menuServ.getMealByCategoryID(widget.id).listen((QuerySnapshot snapshot) {
     //meals = menuServ.getAllMeals().listen((QuerySnapshot snapshot){
       mealsList = snapshot.documents.map((documentSnapshot)
         => Meal(
@@ -47,22 +50,9 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Menu'), backgroundColor: Colors.deepOrange,
-      bottom:TabBar(
-                controller: _tabController,
-                isScrollable: true,
-                unselectedLabelColor: Colors.white12,
-                tabs: [
-                Tab(child: Text('breakfast')),
-                Tab(child: Text('beef')),
-                Tab(child: Text('chicken')),
-                Tab(child: Text('seafood')),
-                Tab(child: Text('dessert')),
-                Tab(child: Text('sides'))
-              ]),
-      ),
+      appBar: AppBar(title: Text('Menu'), backgroundColor: Colors.deepOrange,),
       body: ListView.builder(
-        //itemCount: mealsList.length-2,
+        
         itemCount: mealsList.length,
         itemBuilder: (context, index){
           return
