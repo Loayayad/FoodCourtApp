@@ -1,4 +1,7 @@
+import 'package:FoodCourtApp/models/meal/category.dart';
+import 'package:FoodCourtApp/screens/menu/categories.dart';
 import 'package:FoodCourtApp/screens/menu/mealDeatails.dart';
+import 'package:FoodCourtApp/screens/offers/offers.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:ui';
@@ -40,18 +43,17 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    
 
 
     return Scaffold(
 
-    body: Stack(
+    body: SingleChildScrollView(
+      child: Stack(
 
       children: [
         Container(
-          height: height* 0.17,
-          width: width,
+          height: 120,
           decoration:BoxDecoration(
             color: Colors.deepOrange,
             borderRadius: BorderRadius.only(
@@ -88,7 +90,7 @@ class _HomeState extends State<Home> {
         ),
         Column(
           children: [
-            SizedBox(height:height*0.20 ,),
+            SizedBox(height:150 ,),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
@@ -105,7 +107,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             Container(
-              height:height*0.4,
+              height:260,
               // color: Colors.deepOrange,
                child: ListView.builder(
                   shrinkWrap: true,
@@ -119,10 +121,126 @@ class _HomeState extends State<Home> {
                     },
             ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  Text('Offers',
+                  style:TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize:20,
+                  )
+                  ),
+                  SizedBox(width:10),
+                  Icon(Icons.local_offer_sharp)
+                ],
+              ),
+            ),
+            Container(
+              height:300,
+              // color: Colors.deepOrange,
+               child: ListView.builder(
+                  shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: 1,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Stack(
+                          children: [
+                          Image.network('https://firebasestorage.googleapis.com/v0/b/foodcourt-2f1f1.appspot.com/o/meals%2Famerican%20meals%2Fpestosteak.PNG?alt=media&token=51181551-0cc6-4ab7-a8c3-934fa4f8b487'),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 280.0),
+                            child: Text('19% OFF ',
+                                style: TextStyle(fontSize: 24,
+                                color: Colors.white,
+                                backgroundColor: Colors.red
+                            ), ),
+                          ),
+                          GestureDetector(
+                            child:Padding(
+                              padding: const EdgeInsets.only(top: 235.0),
+                              child: Text('View More Offers',
+                                style: TextStyle(fontSize: 25,
+                                color: Colors.white,
+                                backgroundColor: Colors.black45
+                          ), ),
+                            ),
+                          
+                          onTap: (){
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => Offers()) );
+                          },
+                          )
+                        ],),
+                      );
+                    },
+            ),
+            ),
+            
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  Center(
+                    child: Text('We offer you delicious meals prepared by professionals with reasonable prices',
+                    textAlign: TextAlign.center,
+                    style:TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize:19,
+                      color: Colors.black
+                    )
+                    ),
+                  ),
+                  SizedBox(width:10)
+                ],
+              ),
+            ),
+            Container(
+              height:360,
+              // color: Colors.deepOrange,
+               child: ListView.builder(
+                  shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: 1,
+                    itemBuilder: (BuildContext context, int index) {
+                    return  Column(
+                      children: [
+                        Container(
+                          width:380,
+                          height: 300,
+                          child: ClipRRect(
+                          borderRadius: BorderRadius.circular(30),
+                          child: Image(
+                            image: NetworkImage('https://firebasestorage.googleapis.com/v0/b/foodcourt-2f1f1.appspot.com/o/meals%2ForientalMeals%2Fseafood%2FshrimpPasta.PNG?alt=media&token=a1d7a974-703c-44ef-9c9b-d019540e6d41'),
+                            
+                          ),)),
+                        
+                        GestureDetector(
+                          child:Padding(
+                            padding: const EdgeInsets.only(top: 18.0),
+                            child: Text('See Full Menu',
+                            style: TextStyle(fontSize: 20,
+                            color: Colors.deepOrange,
+                        ), ),
+                          ),
+                        onTap: (){
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Categories()) );
+                        },
+                        )
+                      ],
+                    ); } ),
+            ),
+            
           ],
-        )
+        ),
+        
       ]
+    ),
+    
     )
+    
   );
 
   }
@@ -210,3 +328,4 @@ class _HomeState extends State<Home> {
       );
   }
 }
+
