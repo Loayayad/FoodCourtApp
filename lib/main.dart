@@ -42,10 +42,10 @@ List<Widget> list=[
         appBar: AppBar(
 
           title:Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(left: 90.0),
             child: Text('FoodCourt'),
           ),
-          backgroundColor: Colors.deepOrnage,
+          backgroundColor: Colors.deepOrange,
 
         ),
         body:list[index],
@@ -69,45 +69,48 @@ List<Widget> list=[
      return SizedBox(
        width:MediaQuery.of(context).size.width*0.75,
        child: Drawer(
-         child:Column(
-           crossAxisAlignment: CrossAxisAlignment.stretch,
-           children:<Widget>[
-             ListTile(
-                leading:Icon(Icons.home),
-                title: Text('Home'),
-                onTap:()=> onClick(context,0),
-             ),
-              ListTile(
-                leading:Icon(Icons.lunch_dining),
-                title: Text('Menu'),
-                onTap:()=> onClick(context,1),
-             ),
-              ListTile(
-                leading:Icon(Icons.local_offer_sharp ),
-                title: Text('Offers'),
-                onTap:()=> onClick(context,2),
-             ),
-              ListTile(
-                leading:Icon(Icons.local_dining ),
-                title: Text('Chefs'),
-                onTap:()=> onClick(context,3),
-             ),
-              ListTile(
-                leading:Icon(Icons.shopping_cart ),
-                title: Text('Cart'),
-                onTap:()=> onClick(context,4),
-             ),
-              ListTile(
-                leading:Icon(Icons.person_rounded),
-                title: Text('Login'),
-                onTap:()=> onClick(context,5),
-             ),
-              ListTile(
-                leading:Icon(Icons.person_add_alt_1_rounded),
-                title: Text('Register'),
-                onTap:()=> onClick(context,6),
-             ),
-           ]
+         child:Padding(
+           padding: const EdgeInsets.only(top: 25.0),
+           child: Column(
+             crossAxisAlignment: CrossAxisAlignment.stretch,
+             children:<Widget>[
+               ListTile(
+                  leading:Icon(Icons.home),
+                  title: Text('Home'),
+                  onTap:()=> onClick(context,0),
+               ),
+                ListTile(
+                  leading:Icon(Icons.lunch_dining),
+                  title: Text('Menu'),
+                  onTap:()=> onClick(context,1),
+               ),
+                ListTile(
+                  leading:Icon(Icons.local_offer_sharp ),
+                  title: Text('Offers'),
+                  onTap:()=> onClick(context,2),
+               ),
+                ListTile(
+                  leading:Icon(Icons.local_dining ),
+                  title: Text('Chefs'),
+                  onTap:()=> onClick(context,3),
+               ),
+                ListTile(
+                  leading:Icon(Icons.shopping_cart ),
+                  title: Text('Cart'),
+                  onTap:()=> onClick(context,4),
+               ),
+                ListTile(
+                  leading:Icon(Icons.person_rounded),
+                  title: Text('Login'),
+                  onTap:()=> onClick(context,5),
+               ),
+                ListTile(
+                  leading:Icon(Icons.person_add_alt_1_rounded),
+                  title: Text('Register'),
+                  onTap:()=> onClick(context,6),
+               ),
+             ]
+           ),
          )
        )
      );
