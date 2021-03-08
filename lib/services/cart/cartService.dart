@@ -2,6 +2,7 @@ import 'package:FoodCourtApp/models/meal/meal.dart';
 import 'package:flutter/material.dart';
 
 List<Meal> purchasedItems = [];
+int total = 0;
 class CartService {
   
 
@@ -18,5 +19,16 @@ class CartService {
 
   List<Meal> getMeals(){
     return purchasedItems;
+  }
+
+  calculateTotal(){
+    for(int i=0; i<purchasedItems.length; i++)
+    {
+      total += purchasedItems[i].price ; 
+    }
+  }
+
+  int getTotal(){
+    return total ;
   }
 }

@@ -44,7 +44,68 @@ StreamSubscription<QuerySnapshot> categories;
       title: Center(child: Text('Categories', style: TextStyle(color: Colors.deepOrange))),
       backgroundColor: Colors.white,
       ),
-      body: ListView.builder(
+      body: 
+      //Column(
+      //   children: [
+      //     Center(child: Text('Categories', style: TextStyle(color: Colors.deepOrange, fontSize: 25))),
+      //     Row(children: [
+      //       Row(children: [
+      //         Column(
+      //           children: [
+      //             Image.network(categoriesList[0].image, width: 150, height:150),
+      //             Text(categoriesList[0].name, style: TextStyle(fontSize: 26, color:Colors.deepOrange),
+      //             )],
+      //         ),
+              
+      //         Column(
+      //           children: [
+      //             Image.network(categoriesList[1].image, width: 150, height:150),
+      //             Text(categoriesList[1].name, style: TextStyle(fontSize: 26, color:Colors.deepOrange),
+      //             )],
+      //         ),
+      //         ],)
+      //     ],),
+      //     Row(
+      //       children: [
+      //       Row(children: [
+      //         Column(
+      //           children: [
+      //             Image.network(categoriesList[2].image, width: 150, height:150),
+      //             Text(categoriesList[2].name, style: TextStyle(fontSize: 26, color:Colors.deepOrange),
+      //             )],
+      //         ),
+              
+      //         Column(
+      //           children: [
+      //             Image.network(categoriesList[3].image, width: 150, height:150),
+      //             Text(categoriesList[3].name, style: TextStyle(fontSize: 26, color:Colors.deepOrange),
+      //             )],
+      //         ),
+      //         ],)
+      //     ],
+      //     ),
+      //     Row(
+      //       children: [
+      //       Row(children: [
+      //         Column(
+      //           children: [
+      //             Image.network(categoriesList[4].image, width: 150, height:150),
+      //             Text(categoriesList[4].name, style: TextStyle(fontSize: 26, color:Colors.deepOrange),
+      //             )],
+      //         ),
+              
+      //        Column(
+      //           children: [
+      //             Image.network(categoriesList[5].image, width: 150, height:150),
+      //             Text(categoriesList[5].name, style: TextStyle(fontSize: 26, color:Colors.deepOrange),
+      //             )],
+      //         ),
+      //         ],)
+      //     ],
+      //     )
+      //   ],
+      // )
+      ListView.builder(
         itemCount: 6,
         itemBuilder: (context, index){
         return GestureDetector(

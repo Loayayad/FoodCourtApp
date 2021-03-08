@@ -1,5 +1,6 @@
 import 'package:FoodCourtApp/models/meal/meal.dart';
 import 'package:FoodCourtApp/screens/cart/cart.dart';
+import 'package:FoodCourtApp/screens/offers/offers.dart';
 
 import 'package:flutter/material.dart';
 
@@ -36,7 +37,12 @@ class _MealDetailsState extends State<MealDetails> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            
+            RaisedButton(child: Text('Show Offers'),
+                  onPressed: (){
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Offers()));
+                  },
+                  ),
             Image.network(widget.meal.image),
             Text(widget.meal.description, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),textAlign:TextAlign.center),
             Padding(

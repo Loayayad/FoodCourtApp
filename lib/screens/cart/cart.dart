@@ -1,4 +1,5 @@
 import 'package:FoodCourtApp/models/meal/meal.dart';
+import 'package:FoodCourtApp/screens/checkout/checkout.dart';
 import 'package:FoodCourtApp/services/cart/cartService.dart';
 import 'package:flutter/material.dart';
 
@@ -17,13 +18,25 @@ class _CartState extends State<Cart> {
     purchasedList = cartServ.getMeals();
    
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Cart'),
         backgroundColor: Colors.deepOrange,
+        actions:<Widget>[
+        IconButton(
+          icon: Icon(Icons.check,
+          color:Colors.white,
+          ),
+          onPressed: (){
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) => CheckOut(meals: purchasedList,)));
+          },
+        )
+      ],
       ),
+      
       body: ListView.builder(
         itemCount: purchasedList.length,
         itemBuilder: (context, index){
