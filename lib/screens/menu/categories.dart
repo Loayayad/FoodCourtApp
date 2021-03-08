@@ -25,7 +25,7 @@ StreamSubscription<QuerySnapshot> categories;
     categoriesList = new List();
     categories?.cancel();
     categories = catServ.getAllCategories().listen((QuerySnapshot snapshot) {
-    //meals = menuServ.getAllMeals().listen((QuerySnapshot snapshot){
+    
       categoriesList = snapshot.documents.map((documentSnapshot)
         => Category(
           documentSnapshot.data['id'],
@@ -38,34 +38,33 @@ StreamSubscription<QuerySnapshot> categories;
   
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
-      appBar: AppBar(title: Text('Select Desired Category'), backgroundColor: Colors.deepOrange,),
+      appBar: AppBar(
+      title: Center(child: Text('Categories', style: TextStyle(color: Colors.deepOrange))),
+      backgroundColor: Colors.white,
+      ),
       body: ListView.builder(
-        itemCount: categoriesList.length-2,
+        itemCount: 6,
         itemBuilder: (context, index){
         return GestureDetector(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10.0),
             child: Card(
               child: Column(
                 children: [
-                  Container(
-                    width: 300,
-                    height: 200,
-                    child: Image.network(categoriesList[index].image)),
-                  Text(categoriesList[index].name, style: TextStyle(fontSize: 26),
+                  Image.network(categoriesList[index].image),
+                  Text(categoriesList[index].name, style: TextStyle(fontSize: 26, color:Colors.deepOrange),
                   )],
               ),
               ),
           ),
             onTap:(){
               Navigator.push(context,
-                MaterialPageRoute(builder: (context) => Menu(id: categoriesList[index].id)
-                )
+                MaterialPageRoute(builder: (context) => Menu(id: categoriesList[index].id, name: categoriesList[index].name))
               );}
           );
-      }
-      ) 
+      }) 
     );
   }
 }
