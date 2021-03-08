@@ -154,7 +154,7 @@ class _HomeState extends State<Home> {
                             child: Text('19% OFF ',
                                 style: TextStyle(fontSize: 24,
                                 color: Colors.white,
-                                backgroundColor: Colors.red
+                                backgroundColor: Colors.deepOrange
                             ), ),
                           ),
                           GestureDetector(
@@ -210,25 +210,27 @@ class _HomeState extends State<Home> {
                           width:380,
                           height: 300,
                           child: ClipRRect(
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(25),
                           child: Image(
                             image: NetworkImage('https://firebasestorage.googleapis.com/v0/b/foodcourt-2f1f1.appspot.com/o/meals%2ForientalMeals%2Fseafood%2FshrimpPasta.PNG?alt=media&token=a1d7a974-703c-44ef-9c9b-d019540e6d41'),
                             
                           ),)),
                         
-                        GestureDetector(
-                          child:Padding(
-                            padding: const EdgeInsets.only(top: 18.0),
+                        Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: RaisedButton(
                             child: Text('See Full Menu',
                             style: TextStyle(fontSize: 20,
-                            color: Colors.deepOrange,
+                            color: Colors.white,
                         ), ),
-                          ),
-                        onTap: (){
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Categories()) );
+                        
+                        color: Colors.deepOrange,
+                        onPressed: (){
+                            Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Categories()) );
                         },
-                        )
+                        )),
+                        
                       ],
                     ); } ),
             ),
