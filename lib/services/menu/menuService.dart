@@ -11,6 +11,13 @@ class MenuService {
     Stream<QuerySnapshot> mealsL = Firestore.instance.collection('meals').where('category', isEqualTo: catID).snapshots();
     return mealsL;
   }
+
+  Stream<QuerySnapshot> getOffers(){
+    
+    Stream<QuerySnapshot> mealsL = Firestore.instance.collection('meals').where('show', isEqualTo: true).snapshots();
+    return mealsL;
+  }
+
   Stream<QuerySnapshot> getAllMeals(){
     Stream<QuerySnapshot> snapshots = meals.snapshots();
     return snapshots;

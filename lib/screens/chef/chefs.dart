@@ -80,11 +80,12 @@ class _ChefState extends State<ShowChef> {
                               name: chefsList[index].name
                             ,description: chefsList[index].description
                             ,imageLink: chefsList[index].image,
+                            cId:chefsList[index].id ,
                             )
                             )
                             );
                             },
-                               child: Text("Know them more" , style: TextStyle(color: Colors.black )),
+                               child: Text("Know them more" , style: TextStyle(color: Colors.black)),
                              )
                         
                       ],

@@ -11,5 +11,9 @@ class ChefService{
     Stream<QuerySnapshot> chefsI = Firestore.instance.collection('chefs').where('id', isEqualTo: cID).snapshots();
     return chefsI;
   }
+    Stream<QuerySnapshot> getMealByChefID(cID){
+    Stream<QuerySnapshot> mealsL = Firestore.instance.collection('meals').where('chef', isEqualTo: cID).snapshots();
+    return mealsL;
+  }
 
 }
