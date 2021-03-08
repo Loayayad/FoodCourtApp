@@ -1,6 +1,8 @@
 import 'package:FoodCourtApp/screens/auth/login.dart';
 import 'package:FoodCourtApp/screens/auth/signup.dart';
 import 'package:FoodCourtApp/screens/chef/chefs.dart';
+import 'package:FoodCourtApp/screens/offers/offers.dart';
+import 'package:FoodCourtApp/screens/cart/cart.dart';
 import 'package:FoodCourtApp/screens/menu/categories.dart';
 import 'package:FoodCourtApp/screens/home/home.dart';
 import 'package:FoodCourtApp/services/home/home.dart';
@@ -20,9 +22,12 @@ int index = 0;
 List<Widget> list=[
   Home(),
   Categories(),
+  Offers(),
   ShowChef(),
+  Cart(),
   Login(),
   Registration(),
+
 
 
 
@@ -36,11 +41,11 @@ List<Widget> list=[
       home: Scaffold(
         appBar: AppBar(
 
-          // title:Padding(
-          //   padding: const EdgeInsets.all(8.0),
-          //   child: Text('FoodCourt'),
-          // ),
-          backgroundColor: Colors.transparent,
+          title:Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text('FoodCourt'),
+          ),
+          backgroundColor: Colors.deepOrnage,
 
         ),
         body:list[index],
@@ -78,19 +83,29 @@ List<Widget> list=[
                 onTap:()=> onClick(context,1),
              ),
               ListTile(
+                leading:Icon(Icons.local_offer_sharp ),
+                title: Text('Offers'),
+                onTap:()=> onClick(context,2),
+             ),
+              ListTile(
                 leading:Icon(Icons.local_dining ),
                 title: Text('Chefs'),
-                onTap:()=> onClick(context,2),
+                onTap:()=> onClick(context,3),
+             ),
+              ListTile(
+                leading:Icon(Icons.shopping_cart ),
+                title: Text('Cart'),
+                onTap:()=> onClick(context,4),
              ),
               ListTile(
                 leading:Icon(Icons.person_rounded),
                 title: Text('Login'),
-                onTap:()=> onClick(context,3),
+                onTap:()=> onClick(context,5),
              ),
               ListTile(
                 leading:Icon(Icons.person_add_alt_1_rounded),
                 title: Text('Register'),
-                onTap:()=> onClick(context,4),
+                onTap:()=> onClick(context,6),
              ),
            ]
          )
