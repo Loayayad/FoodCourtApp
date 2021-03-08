@@ -1,20 +1,63 @@
+import 'dart:async';
+
+
+import 'package:FoodCourtApp/models/meal/meal.dart';
+import 'package:FoodCourtApp/screens/chef/chefs.dart';
+import 'package:FoodCourtApp/services/chef/chefService.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
+import 'chefDeshies.dart';
+
+
 class chefDetails extends StatefulWidget {
    String name;
    String imageLink;
    String description;
+   int cId;
 
-  chefDetails({this.name, this.imageLink , this.description});
+  chefDetails({this.name, this.imageLink , this.description ,this.cId});
   @override
   _chefDetailsState createState() => _chefDetailsState();
 }
+ 
 
 class _chefDetailsState extends State<chefDetails> {
+  StreamSubscription<QuerySnapshot> chefs;
+  List<Meal> mealsList;
+  ChefService chefServ = new ChefService();
+
+    @override
+  void initState(){
+    super.initState();
+
+    mealsList = new List();
+    chefs?.cancel();
+    chefs = chefServ.getMealByChefID(widget.cId).listen((QuerySnapshot snapshot){
+      mealsList = snapshot.documents.map((documentSnapshot)
+        => Meal(
+          documentSnapshot.data['id'],
+          documentSnapshot.data['name'],
+          documentSnapshot.data['image'],
+          documentSnapshot.data['discount'],
+          documentSnapshot.data['description'],
+          documentSnapshot.data['chef'],
+          documentSnapshot.data['category'],
+          documentSnapshot.data['price'],
+          documentSnapshot.data['show'],
+      )).toList();
+     setState(() {
+       
+     });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body:ListView(
-        children:<Widget> [
+        children: [
+      
             Stack(
                children:<Widget>[
                  Container(
@@ -32,7 +75,10 @@ class _chefDetailsState extends State<chefDetails> {
                    alignment:Alignment.topLeft,
                    child: IconButton(
                      icon: Icon(Icons.arrow_back_ios),
-                     onPressed: (){},
+                     onPressed: (){
+                      Navigator.pop(context);
+
+                     },
                      color: Colors.white,
                    ),
                  ),
@@ -72,8 +118,8 @@ class _chefDetailsState extends State<chefDetails> {
                        mainAxisAlignment: MainAxisAlignment.center,
                        children: <Widget>[
                          Text(widget.name, style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17.0),
+                        
+                        fontSize: 26.0),
                          ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -88,24 +134,72 @@ class _chefDetailsState extends State<chefDetails> {
                      right: 15.0,
                      left:(MediaQuery.of(context).size.width/2-180.0),
                      child: Column(
-                       crossAxisAlignment: CrossAxisAlignment.start,
+                       crossAxisAlignment: CrossAxisAlignment.center,
                        
                        children: <Widget>[
                          Container(
                             height:200.0,
-                           child: Text(widget.description, style: TextStyle(
+                           child: Padding(
+                             padding: const EdgeInsets.all(8.0),
+                             child: Text(widget.description, style: TextStyle(
                         fontSize: 17.0),
+                             ),
                            ),
                          ),
-                      
-              
                        ],
                      ),
                    ),
+               
+          
+        
                ]
+                 
             ),
-      ],)
-      
+              Positioned(
+                     right: 15.0,
+                     left:(MediaQuery.of(context).size.width/2-180.0),
+                     child: Column(
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                       
+                       children: <Widget>[
+                         Container(
+                           child: Padding(
+                             padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                             child: Text('Meals', style: TextStyle(
+                                 fontSize: 25.0),
+                             ),
+                           ),
+                         ),
+                       ],
+                     ),
+                   ),
+                 Container(
+                 child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                   itemCount: mealsList.length,
+                   itemBuilder: ( context ,index){
+                       return InkWell(
+                         child:chefDeshies(
+                            meal: mealsList[index],
+                            name: '',
+                           
+                         )
+                         
+                       );
+                      
+                    
+                     }
+               )
+
+          ),
+
+      ],
+      ),
+       
     );
+    
   }
+ 
+
 }
