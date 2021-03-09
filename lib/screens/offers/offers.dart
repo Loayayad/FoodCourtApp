@@ -44,44 +44,66 @@ class _OffersState extends State<Offers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Offers')),
+      
       body: ListView.builder(
         itemCount: mealsList.length,
         itemBuilder: (context, index){
-          return Card(
-            child:
-                Column(
-                  children: [
-                    Stack(children: [
-                      Image.network(mealsList[index].image,),
-                      Text('Discount: ${mealsList[index].discount}', style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 30,
-                        backgroundColor: Colors.white60),),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 250.0),
-                        child: Text(mealsList[index].name, style: TextStyle(fontSize: 30, color: Colors.white,
-                        backgroundColor: Colors.black38
-                        ),),
-                      ),
-                      
-                    ],),
-                    RaisedButton(
-                      child: Text('See Details'),
-                      onPressed: (){
-                        Navigator.push(context,
+          return Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Card(
+              
+              child:
+                  Column(
+                    children: [
+                      Stack(children: [
+                        Container(
+                          height: 300,
+                          width: 420,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                            image: DecorationImage(
+                            image: NetworkImage(mealsList[index].image,), fit: BoxFit.fill),
+                            borderRadius: BorderRadius.circular(7.0)
+                            ),),
+                          
+                        Padding(
+                          padding: const EdgeInsets.only(left: 262.0),
+                          child: Text(' ${mealsList[index].discount} OFF ', style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+                            backgroundColor: Colors.deepOrange),),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 265.0),
+                          child: Text(mealsList[index].name, style: TextStyle(fontSize: 30, color: Colors.white,
+                            backgroundColor: Colors.black38
+                            ),),
+                        ),
+                        TextButton(
+                          onPressed: 
+                          (){Navigator.push(context,
                               MaterialPageRoute(builder: (context) => MealDetails(
                                 meal: mealsList[index],
                                 counter: 1,
-                              )
-                              )
-                              );
-                      },
-                    )
-                  ],
-                ),
-                
-            );
+                              )));}, 
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 270.0, top:260),
+                            child: Row(
+                              children: [
+                                Text('See Details', style: TextStyle(fontSize: 16,
+                                color:Colors.deepOrangeAccent,
+                                )),
+                                Icon(Icons.arrow_right, color: Colors.deepOrangeAccent,),
+                              ],
+                            ),
+                          ))
+                        
+                      ],),
+                    ],
+                  ),
+                  
+              ),
+          );
         }),
     );
   }

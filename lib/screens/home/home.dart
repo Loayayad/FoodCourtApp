@@ -150,8 +150,8 @@ class _HomeState extends State<Home> {
                           children: [
                           Image.network('https://firebasestorage.googleapis.com/v0/b/foodcourt-2f1f1.appspot.com/o/meals%2Famerican%20meals%2Fpestosteak.PNG?alt=media&token=51181551-0cc6-4ab7-a8c3-934fa4f8b487'),
                           Padding(
-                            padding: const EdgeInsets.only(left: 280.0),
-                            child: Text('19% OFF ',
+                            padding: const EdgeInsets.only(left: 274.0),
+                            child: Text(' 19% OFF ',
                                 style: TextStyle(fontSize: 24,
                                 color: Colors.white,
                                 backgroundColor: Colors.deepOrange
