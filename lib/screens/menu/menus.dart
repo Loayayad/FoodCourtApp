@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:FoodCourtApp/screens/cart/cart.dart';
 import 'package:FoodCourtApp/screens/menu/mealDeatails.dart';
+import 'package:FoodCourtApp/services/cart/cartService.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../services/menu/menuService.dart';
@@ -9,24 +11,27 @@ import '../../models/meal/meal.dart';
 
 
 class Menu extends StatefulWidget {
+  int id;
+  String name;
+  Menu({this.id, this.name});
   @override
   _MenuState createState() => _MenuState();
 }
 
 class _MenuState extends State<Menu> with TickerProviderStateMixin{
-  TabController _tabController;
+  
   StreamSubscription<QuerySnapshot> meals;
   List<Meal> mealsList;
   MenuService menuServ = new MenuService();
-
+  CartService cService = new CartService();
   @override
   void initState(){
     super.initState();
-    _tabController = TabController(length:6, vsync: this);
+    
     mealsList = new List();
     meals?.cancel();
-    meals = menuServ.getMealByCategoryID(1).listen((QuerySnapshot snapshot) {
-    //meals = menuServ.getAllMeals().listen((QuerySnapshot snapshot){
+    meals = menuServ.getMealByCategoryID(widget.id).listen((QuerySnapshot snapshot) {
+    
       mealsList = snapshot.documents.map((documentSnapshot)
         => Meal(
           documentSnapshot.data['id'],
@@ -41,28 +46,28 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin{
       )).toList();
     setState(() {});
     });
+
   }
   
-
   @override
   Widget build(BuildContext context) {
+    var counters = new List<int>.generate(mealsList.length, (i) => 0);
     return Scaffold(
-      appBar: AppBar(title: Text('Menu'), backgroundColor: Colors.deepOrange,
-      bottom:TabBar(
-                controller: _tabController,
-                isScrollable: true,
-                unselectedLabelColor: Colors.white12,
-                tabs: [
-                Tab(child: Text('breakfast')),
-                Tab(child: Text('beef')),
-                Tab(child: Text('chicken')),
-                Tab(child: Text('seafood')),
-                Tab(child: Text('dessert')),
-                Tab(child: Text('sides'))
-              ]),
+      appBar: AppBar(title: Text('${widget.name} Menu'), backgroundColor: Colors.deepOrange,
+      actions:<Widget>[
+        IconButton(
+          icon: Icon(Icons.shopping_cart,
+          color:Colors.white,
+          ),
+          onPressed: (){
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) => Cart()));
+          },
+        )
+      ],
       ),
       body: ListView.builder(
-        //itemCount: mealsList.length-2,
+        
         itemCount: mealsList.length,
         itemBuilder: (context, index){
           return
@@ -78,10 +83,7 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin{
                           borderRadius: BorderRadius.circular(30),
                           child: Image(
                             image: NetworkImage(mealsList[index].image),
-                          ),
-                          )
-                        
-                        )
+                          ),))
                       ],
                     ),
                     Column(
@@ -99,35 +101,42 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin{
                             Text('L.E', style: TextStyle(color: Colors.orange)),
                           ],
                         ),
-                        Row(
-                          children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Icon(
-                              Icons.add_shopping_cart_outlined,
-                              color: Colors.orange,
-                              size: 30.0,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Row(
+                            children: [
+                            Text('Count: ${counters[index]}'),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                              child:IconButton(
+                                icon: Icon(Icons.add_shopping_cart_outlined,
+                                color:Colors.orange,
+                                ),
+                                onPressed: (){
+                                  cService.addToCart(mealsList[index]);
+                                  print(cService.getMeals().length);
+                                   }
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: GestureDetector(
-                              child:Icon(
-                              Icons.info_outline,
-                              color: Colors.orange,
-                              size: 30.0,
-                            ),
-                            onTap:(){Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => mealDetails(name: mealsList[index].name
-                            ,description: mealsList[index].description
-                            ,price: mealsList[index].price
-                            ,imageLink: mealsList[index].image,
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                              child: GestureDetector(
+                                child:Icon(
+                                Icons.info_outline,
+                                color: Colors.orange,
+                                size: 30.0,
+                              ),
+                              onTap:(){Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => MealDetails(
+                                meal: mealsList[index],
+                                counter: counters[index],
+                              )
+                              )
+                              );}
+                              )
                             )
-                            )
-                            );}
-                            )
-                          )
-                        ],)
+                          ],),
+                        )
                       ],
                     ),
                     

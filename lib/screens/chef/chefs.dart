@@ -39,7 +39,7 @@ class _ChefState extends State<ShowChef> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Our Chefs'), backgroundColor: Colors.deepOrange,),
+      //appBar: AppBar(title: Text('Our Chefs'), backgroundColor: Colors.deepOrange,),
       body:ListView.builder(
         itemCount: chefsList.length-2,
         itemBuilder: (BuildContext context , int index)=> Container(
@@ -80,11 +80,12 @@ class _ChefState extends State<ShowChef> {
                               name: chefsList[index].name
                             ,description: chefsList[index].description
                             ,imageLink: chefsList[index].image,
+                            cId:chefsList[index].id ,
                             )
                             )
                             );
                             },
-                               child: Text("Know them more" , style: TextStyle(color: Colors.black )),
+                               child: Text("Know them more" , style: TextStyle(color: Colors.black)),
                              )
                         
                       ],
