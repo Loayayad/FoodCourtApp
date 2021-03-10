@@ -11,7 +11,6 @@ class FoodCourtHomePage extends StatefulWidget {
 class _FoodCourtHomePageState extends State<FoodCourtHomePage> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
@@ -21,6 +20,16 @@ class _FoodCourtHomePageState extends State<FoodCourtHomePage> {
         child: Column(
           children: [
             //widget.name,
+            // RaisedButton(
+            //   child: Text("draft"),
+            //   onPressed: () {
+            //     setState(
+            //       () {
+            //         Navigator.pushNamed(context, 'firedata');
+            //       },
+            //     );
+            //   },
+            // ),
             RaisedButton(
               child: Text("signup"),
               onPressed: () {
@@ -41,7 +50,7 @@ class _FoodCourtHomePageState extends State<FoodCourtHomePage> {
                 );
               },
             ),
-             RaisedButton(
+            RaisedButton(
               child: Text("Home"),
               onPressed: () {
                 setState(
@@ -61,7 +70,7 @@ class _FoodCourtHomePageState extends State<FoodCourtHomePage> {
                 );
               },
             ),
-             RaisedButton(
+            RaisedButton(
               child: Text("Show Chefs"),
               onPressed: () {
                 setState(
@@ -73,7 +82,6 @@ class _FoodCourtHomePageState extends State<FoodCourtHomePage> {
             ),
           ],
         ),
-
       ),
     );
   }

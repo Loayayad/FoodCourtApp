@@ -1,3 +1,4 @@
+import 'package:FoodCourtApp/components/firedata.dart';
 import 'package:FoodCourtApp/screens/auth/login.dart';
 import 'package:FoodCourtApp/screens/auth/signup.dart';
 import 'package:FoodCourtApp/screens/chef/chefs.dart';
@@ -25,9 +26,10 @@ class MyApp extends StatelessWidget {
 
         'home': (context) => Home(),
 
+        'chef': (context) => ShowChef(),
 
-        'chef':(context) => ShowChef(),
-
+        //draft
+        'firedata': (context) => GetData(),
       },
     );
   }
