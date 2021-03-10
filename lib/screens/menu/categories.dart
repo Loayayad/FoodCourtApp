@@ -35,14 +35,15 @@ class _CategoriesState extends State<Categories> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            "Categories",
-            style: TextStyle(color: Colors.deepOrange),
-          ),
+          title: Text('categories', style: TextStyle(color:Colors.deepOrange),),
+          backgroundColor: Colors.white,
+          shadowColor: Colors.white,
+          centerTitle: true,
+        ),
           backgroundColor: Colors.white,
           //shadowColor: Colors.white,
           //centerTitle: true,
-        ),
+        
         body: Padding(
           padding: const EdgeInsets.only(top: 8.0),
           child: Column(

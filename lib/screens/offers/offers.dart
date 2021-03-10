@@ -43,7 +43,9 @@ class _OffersState extends State<Offers> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Offers'),
+        title: Text('Offers', style: TextStyle(color:Colors.deepOrange)),
+        backgroundColor: Colors.white,
+        shadowColor: Colors.white,
         centerTitle: true,
       ),
       body: ListView.builder(

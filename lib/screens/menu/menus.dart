@@ -51,7 +51,7 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin{
   
   @override
   Widget build(BuildContext context) {
-    var counters = new List<int>.generate(mealsList.length, (i) => 0);
+    var counters = new List<int>.generate(mealsList.length, (i) => 1);
     return Scaffold(
       appBar: AppBar(title: Text('${widget.name} Menu'), backgroundColor: Colors.deepOrange,
       actions:<Widget>[
@@ -76,68 +76,76 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin{
                   children: [
                     Column(
                       children: [
-                        Container(
-                          width:120,
-                          height: 100,
-                          child: ClipRRect(
-                          borderRadius: BorderRadius.circular(30),
-                          child: Image(
-                            image: NetworkImage(mealsList[index].image),
-                          ),))
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Row(
+                        Stack(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(mealsList[index].name, style: TextStyle(fontSize: 18)),
+                            Container(
+                              height: 100,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.rectangle,
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                        mealsList[index].image,
+                                      ),
+                                      fit: BoxFit.fill),
+                                  borderRadius: BorderRadius.circular(15.0)),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(mealsList[index].price.toString(), style: TextStyle(color: Colors.deepOrange),),
+                              padding: const EdgeInsets.only(left: 15.0, top:40),
+                              child: Text(
+                                (() {
+                                  if(mealsList[index].show){
+                                    return '  ${mealsList[index].discount} OFF  ';}
+
+                                  return "";
+                                })(),
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white, backgroundColor: Colors.deepOrange),
+                              ),
                             ),
-                            Text('L.E', style: TextStyle(color: Colors.orange)),
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Row(
-                            children: [
-                            Text('Count: ${counters[index]}'),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 10),
-                              child:IconButton(
-                                icon: Icon(Icons.add_shopping_cart_outlined,
-                                color:Colors.orange,
-                                ),
-                                onPressed: (){
-                                  cService.addToCart(mealsList[index]);
-                                  print(cService.getMeals().length);
-                                   }
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 10),
-                              child: GestureDetector(
-                                child:Icon(
-                                Icons.info_outline,
-                                color: Colors.orange,
-                                size: 30.0,
-                              ),
-                              onTap:(){Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => MealDetails(
-                                meal: mealsList[index],
-                                counter: counters[index],
-                              )
-                              )
-                              );}
-                              )
-                            )
-                          ],),
-                        )
+                        
                       ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10.0),
+                              child: Text(mealsList[index].name, style: TextStyle(fontSize: 18)),
+                            ),
+                            ],
+                          ),
+                          Row(
+                              children: [
+                                Text('${mealsList[index].price} L.E', 
+                                style: TextStyle(color: Colors.orange, fontSize: 20),),
+                             
+                              IconButton(
+                                  icon: Icon(Icons.add_shopping_cart_outlined,
+                                  color:Colors.orange,
+                                  ),
+                                  onPressed: (){
+                                    Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) => MealDetails(
+                                      meal: mealsList[index],
+                                      counter: counters[index],
+                                    )
+                                    )
+                                    );
+                                     }
+                                ),
+                             
+                              
+                            ],),
+                          
+                        ],
+                      ),
                     ),
                     
                   ],
