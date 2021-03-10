@@ -6,10 +6,10 @@ class Login extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
-        centerTitle: true,
-      ),
+      // appBar: AppBar(
+      //   title: Text('Login'),
+      //   centerTitle: true,
+      // ),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(32),

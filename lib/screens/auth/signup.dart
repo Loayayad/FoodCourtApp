@@ -7,10 +7,10 @@ class Registration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Register'),
-        centerTitle: true,
-      ),
+      // appBar: AppBar(
+      //   title: Text('Register'),
+      //   centerTitle: true,
+      // ),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(32),
