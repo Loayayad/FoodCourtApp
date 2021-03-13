@@ -8,20 +8,17 @@ class CartService {
   
 
   void addToCart(Meal selectedMeal, int counter){
-    if(purchasedItems.contains(selectedMeal))
-    {
-      print("Meal is already in cart");
-    }
-    else{
-      purchasedItems.add(selectedMeal);
-      counters.add(counter);
-      print(purchasedItems);
-      print(counters);
-    }
+    
+    purchasedItems.add(selectedMeal);
+    counters.add(counter);
+    print(purchasedItems);
+    print(counters);
+    
   }
 
-  void removeFromCart(Meal selectedMeal){
-    purchasedItems.remove(selectedMeal);
+  void removeFromCart(int index){
+    purchasedItems.removeAt(index);
+    counters.removeAt(index);
   }
 
   List<Meal> getMeals(){

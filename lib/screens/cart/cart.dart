@@ -14,20 +14,7 @@ class _CartState extends State<Cart> {
   List<int> counters;
   CartService cartServ = new CartService();
 
-///////////////////////////////The Functions to count in the array////////////////////////////////
-// void add(i) {
-//     setState(() {
-//       counters[i]++;
-//     });
-//   }
 
-//   void minus(i) {
-//     if (counters[i] != 0) {
-//       setState(() {
-//         counters[i]--;
-//       });
-//     }
-//   }
 
    @override
   void initState(){
@@ -98,7 +85,21 @@ class _CartState extends State<Cart> {
                   
                   Padding(
                     padding: const EdgeInsets.only(left: 15.0),
-                    child: Text('${purchasedList[index].name} x ${counters[index]}', style: TextStyle(fontSize: 18),),
+                    child: Row(
+                      children: [
+                        Text('${purchasedList[index].name} x ${counters[index]}', style: TextStyle(fontSize: 18),),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 3.0),
+                          child: IconButton(
+                            icon: Icon(Icons.remove_circle, size:20, color: Colors.redAccent,), 
+                            onPressed: (){
+                              cartServ.removeFromCart(index);
+                              setState(() {});
+                            },
+                            ),
+                        )
+                      ],
+                    ),
                   ),
                 
                 Padding(
@@ -112,44 +113,6 @@ class _CartState extends State<Cart> {
                       fontSize: 16,
                       )),
                     ),
-
-/////////////////////////////////////////////HERE THE CODE FOR COUNTER IN THE ARRAY//////////////////////////////////
-                    // Container(
-                    //   width:30,
-                    //   height:30,
-                    //   child: new FloatingActionButton(
-                    //     onPressed: () {
-                    //       minus(index);
-                    //     },
-                    //     heroTag: "Subtract",
-                    //     child: new Icon(
-                    //       Icons.arrow_drop_down,
-                    //       color: Colors.black,
-                    //       size: 18,
-                    //     ),
-                    //     backgroundColor: Colors.white,
-                    //   ),
-                    // ),
-                    // new Text(counters[index].toString(),
-                    //     style: new TextStyle(
-                    //         fontSize: 30.0, color: Colors.black)),
-                    // Container(
-                    //   width:30,
-                    //   height:30,
-                    //   child: new FloatingActionButton(
-                        
-                    //     onPressed: () {
-                    //       add(index);
-                    //     },
-                    //     heroTag: "Add",
-                    //     child: new Icon(
-                    //       Icons.arrow_drop_up,
-                    //       color: Colors.black,
-                    //       size: 18,
-                    //     ),
-                    //     backgroundColor: Colors.white,
-                    //   ),
-                    // ),
 
                     ],
                   ),
