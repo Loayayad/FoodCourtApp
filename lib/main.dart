@@ -1,4 +1,4 @@
-import 'package:FoodCourtApp/components/firedata.dart';
+//import 'package:FoodCourtApp/components/firedata.dart';
 import 'package:FoodCourtApp/screens/auth/login.dart';
 import 'package:FoodCourtApp/screens/auth/signup.dart';
 import 'package:FoodCourtApp/screens/chef/chefs.dart';
@@ -6,7 +6,6 @@ import 'package:FoodCourtApp/screens/offers/offers.dart';
 import 'package:FoodCourtApp/screens/cart/cart.dart';
 import 'package:FoodCourtApp/screens/menu/categories.dart';
 import 'package:FoodCourtApp/screens/home/home.dart';
-import 'package:FoodCourtApp/services/home/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {

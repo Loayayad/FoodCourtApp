@@ -1,7 +1,10 @@
+import 'package:FoodCourtApp/main.dart';
 import 'package:FoodCourtApp/screens/auth/login.dart';
+import 'package:FoodCourtApp/screens/home/home.dart';
 import 'package:FoodCourtApp/services/home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   //Controllers to hold the value
@@ -9,6 +12,25 @@ class AuthService {
   final passwordController = TextEditingController();
   final nameController = TextEditingController();
   //final imageController = TextEditingController();
+
+  saveData(String userID) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    return await pref.setString("userID", userID);
+  }
+
+  Future<String> loadData() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    return pref.getString("userID");
+  }
+
+  String setData() {
+    String uID;
+    loadData().then((value) {
+      print(value);
+      uID = value;
+    });
+    return uID;
+  }
 
   Future<bool> registerUser(
       //String email, String password, String name, String url) async {
@@ -48,7 +70,7 @@ class AuthService {
 
     if (result) {
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => Login()));
+          .push(MaterialPageRoute(builder: (context) => MyApp()));
     } else {
       print("Error");
     }
@@ -75,9 +97,14 @@ class AuthService {
     FirebaseUser user = await login(email, password);
 
     if (user != null) {
+      //print(user.uid);
+      saveData(user.uid);
+      print(loadData());
+      setData();
+
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => FoodCourtHomePage(
+          builder: (context) => MyApp(
               //name: user.displayName,
               //imageUrl: user.photoUrl,
               ),
