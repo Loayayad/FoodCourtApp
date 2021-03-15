@@ -1,3 +1,4 @@
+import 'package:FoodCourtApp/main.dart';
 import 'package:FoodCourtApp/services/auth/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -80,6 +81,22 @@ class Login extends StatelessWidget {
                   padding: EdgeInsets.all(16),
                   onPressed: () async {
                     await _authService.loginButton(context);
+                  },
+                  color: Colors.deepOrange,
+                ),
+              ),
+              SizedBox(
+                height: 18,
+              ),
+              Container(
+                width: double.infinity,
+                child: FlatButton(
+                  child: Text("Home"),
+                  textColor: Colors.white,
+                  padding: EdgeInsets.all(16),
+                  onPressed: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => MyApp()));
                   },
                   color: Colors.deepOrange,
                 ),

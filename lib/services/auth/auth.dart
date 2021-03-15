@@ -23,10 +23,15 @@ class AuthService {
     return pref.getString("userID");
   }
 
+  deleteLocalData() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    return pref.remove("userID");
+  }
+
   String setData() {
     String uID;
     loadData().then((value) {
-      print(value);
+      //print(value);
       uID = value;
     });
     return uID;
@@ -99,7 +104,7 @@ class AuthService {
     if (user != null) {
       //print(user.uid);
       saveData(user.uid);
-      print(loadData());
+      //print(loadData());
       setData();
 
       Navigator.of(context).push(
@@ -112,6 +117,18 @@ class AuthService {
       );
     } else {
       print("Error");
+    }
+  }
+
+  logout(context) async {
+    FirebaseAuth _auth = FirebaseAuth.instance;
+    try {
+      await _auth.signOut();
+      await deleteLocalData();
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => Login()));
+    } catch (e) {
+      print(e);
     }
   }
 }

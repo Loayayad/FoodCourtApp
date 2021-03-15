@@ -135,22 +135,23 @@ class _CheckOutState extends State<CheckOut> {
                       height: 16,
                     ),
                     Padding(
-                        padding: EdgeInsets.only(left: 25.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              '${widget.meals[i].price}    x    ${widget.counters[i]}    =    ${widget.meals[i].price * widget.counters[i]} L.E',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            Text(
-                              '${widget.meals[i].name}',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ],
-                        ))
+                      padding: EdgeInsets.only(left: 25.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            '${widget.meals[i].price}    x    ${widget.counters[i]}    =    ${widget.meals[i].price * widget.counters[i]} L.E',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Text(
+                            '${widget.meals[i].name}',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               SizedBox(
@@ -250,15 +251,15 @@ class _CheckOutState extends State<CheckOut> {
                     child: Text("Order Now"),
                     textColor: Colors.white,
                     padding: EdgeInsets.all(16),
-                    onPressed: () async {
-                      await _checkOutService.orderMeal(Order(
-                          widget.meals,
-                          widget.counters,
-                          _payment.toString(),
-                          discount,
-                          subTotal,
-                          total));
-                    },
+                    // onPressed: () async {
+                    //   await _checkOutService.orderMeal(Order(
+                    //       widget.meals,
+                    //       widget.counters,
+                    //       _payment.toString(),
+                    //       discount,
+                    //       subTotal,
+                    //       total));
+                    // },
                     color: Colors.deepOrange,
                   ),
                 ),

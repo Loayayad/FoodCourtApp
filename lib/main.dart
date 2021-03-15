@@ -6,6 +6,7 @@ import 'package:FoodCourtApp/screens/offers/offers.dart';
 import 'package:FoodCourtApp/screens/cart/cart.dart';
 import 'package:FoodCourtApp/screens/menu/categories.dart';
 import 'package:FoodCourtApp/screens/home/home.dart';
+import 'package:FoodCourtApp/services/auth/auth.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,6 +19,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  AuthService authService = AuthService();
+
   int index = 0;
   List<Widget> list = [
     Home(),
@@ -98,6 +101,11 @@ class AppDrawer extends StatelessWidget {
                   leading: Icon(Icons.person_add_alt_1_rounded),
                   title: Text('Register'),
                   onTap: () => onClick(context, 6),
+                ),
+                ListTile(
+                  leading: Icon(Icons.logout),
+                  title: Text('Logout'),
+                  onTap: () => AuthService().logout(context),
                 ),
               ]),
         )));

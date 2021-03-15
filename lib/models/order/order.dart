@@ -9,12 +9,13 @@ class Order {
   double discount;
   double price;
   double total;
-  List<dynamic> meals;
-  List<int> counteers;
+  String mealName;
+  int quantity;
+  double mealPrice;
 
 //Order(this.name,this.discount,this.price, this.total);}
-  Order(this.meals, this.counteers, this.paymentMethod, this.discount,
-      this.price, this.total);
+  Order(this.mealName, this.quantity, this.mealPrice, this.paymentMethod,
+      this.discount, this.price, this.total);
 
   // Order(this.mealOrder, this.paymentMethod, this.discount, this.price,
   //     this.total);
@@ -23,8 +24,8 @@ class Order {
   //Order(this.discount, this.price, this.total);
   Map<String, dynamic> toMap() {
     return {
-      //'meals': meals.asMap(),
-      'quantity': counters,
+      'mealName': mealName,
+      'mealCount': counters,
       'option': paymentMethod,
       'userID': userID,
       'discount': discount,
