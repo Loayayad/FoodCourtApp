@@ -48,13 +48,14 @@ class CheckOutService {
   }
 
   //Read Data
-  final CollectionReference orders = Firestore.instance.collection('ordersApp');
+  final CollectionReference orders = Firestore.instance.collection('orders');
   Future orderMeal(Order order) async {
-    await orders
-        .document('app')
-        .collection('meal')
-        .document()
-        .setData(order.toMap());
+    // await orders
+    //     .document('app')
+    //     .collection('meal')
+    //     .document()
+    //     .setData(order.toMap());
+    await orders.document('orders').setData(order.toMap());
   }
 
   Future<bool> makeOrder(List<Meal> orderMeals, List<int> counters,
@@ -69,7 +70,18 @@ class CheckOutService {
           print(counters[i]);
 
           order() async {
-            await orders.document('app').collection('meal').add({
+            // await orders.document('app').collection('meal').add({
+            //   'mealName': orderMeals[i].name,
+            //   'mealCount': counters[i],
+            //   'option': payment.substring(14),
+            //   'userID': value,
+            //   'mealPrice': orderMeals[i].price
+            //   // 'discount': discount,
+            //   // 'price': price,
+            //   // 'total': total,
+            // });
+
+            await orders.add({
               'mealName': orderMeals[i].name,
               'mealCount': counters[i],
               'option': payment.substring(14),
